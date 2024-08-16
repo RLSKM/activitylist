@@ -2,22 +2,40 @@
 <html>
   <head>
     <meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Activity page</title>
-    <link rel="stylesheet" href="url_for('static', filename='style.css')">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
     <h1>Activity page</h1>
+	<hr>
     <form method="GET">
-      <input type="text" name="search" id="search" placeholder="Search...">
+      <input type="text" name="search" id="search" value="{{ search }}" placeholder="Search...">
     </form>
-    <br>
-    <hr>
-    <ul>
-      {% for activity in activities %}
-      <li>
-        <a href="{{ url_for('templates', filename='activity_page.html') }}">{{ activity.name }}</a>
-      </li>
-      {% endfor %}
-    </ul>
+	<hr>
+	<section>
+		<h1>Items List - Page {{ page }}</h1>
+		<br>
+		<ul>
+		{% for activity, desc in activities %}
+		<li>
+			<a href="{{ url_for('activitypage', activity=activity) }}">{{ activity }}</a>
+			<p>{{ desc }}</p>
+			<br>
+		</li>
+		{% endfor %}
+		</ul>
+
+		<!-- page controls -->
+		<div>
+			{% if page > 1 -%}
+					<a href="{{ url_for('home', page=1) }}">1</a>&nbsp;...&nbsp;<a href="{{ url_for('home', page=page-1) }}">Previous</a>
+			{%- endif -%}
+			&nbsp;&nbsp;&nbsp;<strong>{{ page }}</strong>&nbsp;&nbsp;&nbsp;
+			{%- if page < total_pages -%}
+				<a href="{{ url_for('home', page=page+1) }}">Next</a>&nbsp;...&nbsp;<a href="{{ url_for('home', page=total_pages) }}">{{ total_pages }}</a>
+			{%- endif %}
+		</div>
+	</section>
   </body>
 </html>
