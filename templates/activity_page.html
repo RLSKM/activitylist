@@ -3,11 +3,11 @@
   <head>
     <meta charset="utf-8">
     <title>Activity Page</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='page.css') }}">
   </head>
   <body>
-    <h1>activtiy</h1>
-    <p>description</p>
-    <p>Link to more info</p>
+    <h1>{{ activity.name }}</h1>
+    <p>{{ activity.description }}</p>
+    <a href="{{ url_for('home') }}">Back to Home</a>
   </body>
 </html>
