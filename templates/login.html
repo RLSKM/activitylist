@@ -3,12 +3,12 @@
   <head>
     <meta charset="utf-8">
     <title>Login page</title>
-    <link rel="stylesheet" href="url_for('static', filename='verification.css')">
+    <link rel="stylesheet" href="{{ url_for('static', filename='verification.css') }}">
   </head>
   <body>
     <h1>Activity Page</h1>
     <hr>
-    <form action="/validation" method="POST">
+    <form action="/login" method="POST">
       <label for="username">Username: </label>
       <input type="text" min="4" max="20" name="username" id="username" placeholder="Username..."><br><br>
       <label for="password">Password: </label>
