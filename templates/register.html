@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Account Registration</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='verification.css') }}">
+  </head>
+  <body>
+    <h1>Account Registration</h1>
+    <hr>
+    <form action="/register" method="POST">
+      <label for="first_name">First name: </label>
+      <input type="text" min="4" max="20" name="first_name" id="first_name" placeholder="First name..."><br><br>
+      <label for="last_name">Last name: </label>
+      <input type="text" min="4" max="20" name="last_name" id="last_name" placeholder="Last name..."><br><br>
+      <label for="email">Email: </label>
+      <input type="email" min="4" max="20" name="email" id="email" placeholder="Email..."><br><br>
+      <label for="username">Username: </label>
+      <input type="text" min="4" max="20" name="username" id="username" placeholder="Username..."><br><br>
+      <label for="password">Password: </label>
+      <input type="password" min="4" max="20" name="password" id="password" placeholder="Password..."><br><br>
+      <label for="confirm_password">Confirm password: </label>
+      <input type="password" min="4" max="20" name="confirm_password" id="confirm_password" placeholder="Password..."><br><br>
+      
+      <input type="submit" value="submit">
+    </form>
+    {% if alert %}
+      <p id="alert">{{ alert }}</p>
+    {% endif %}
+    <p id="login_text">Already have an account? <a href="{{ url_for('login') }}">Login here</a></p>
+  </body>
+</html>
