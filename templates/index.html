@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Activity page</title>
+    <link rel="stylesheet" href="url_for('static', filename='style.css')">
+  </head>
+  <body>
+    <h1>Activity page</h1>
+    <form method="GET">
+      <input type="text" name="search" id="search" placeholder="Search...">
+    </form>
+    <br>
+    <hr>
+    <ul>
+      {% for activity in activities %}
+      <li>
+        <a href="{{ url_for('templates', filename='activity_page.html') }}">{{ activity.name }}</a>
+      </li>
+      {% endfor %}
+    </ul>
+  </body>
+</html>
