@@ -6,16 +6,27 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='verification.css') }}">
   </head>
   <body>
-    <h1>Activity Page</h1>
+    <h1 class="main-head">Account Login</h1>
     <hr>
+	<br>
     <form action="/login" method="POST">
       <label for="username">Username: </label>
       <input type="text" min="4" max="20" name="username" id="username" placeholder="Username..."><br><br>
       <label for="password">Password: </label>
       <input type="password" min="4" max="20" name="password" id="password" placeholder="Password..."><br><br>
 
-      <input type="submit" value="submit">
+      <input type="submit" value="Log In">
     </form>
-    <p id="register_text">Create new account <a href="{{ url_for('register') }}">here</a>!</p>
+	<br>
+    <p id="register-text">Don't have an account? Create a new account <a href="{{ url_for('register') }}">here</a>!</p>
+	
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>alert("{{ messages | safe}}");</script>
+        {% endfor %}
+    {% endif %}
+	{% endwith %}
+
   </body>
 </html>

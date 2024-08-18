@@ -7,35 +7,74 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
   </head>
   <body>
-    <h1>Activity page</h1>
+    <h1 id="main-head">Activity page</h1>
+	<form action="/logout" method="POST">
+		<input type="submit" value="Log out" id="logoff">
+	</form>
 	<hr>
     <form method="GET">
-      <input type="text" name="search" id="search" value="{{ search }}" placeholder="Search...">
+		<button type="submit"><img src="{{ url_for('static', filename='search.png') }}" alt="Search" class="search-icon"></button>
+		<input type="text" name="search" id="search" value="{{ search }}" placeholder="Search...">
+		<label for="filter">Filter: </label>
+		<select id="filter" name="filter">
+			<option value="0" {% if tag == '0' or tag == '' %}selected{% endif %}>~</option>
+			<option value="1" {% if tag == '1' %}selected{% endif %}>Adventure</option>
+			<option value="2" {% if tag == '2' %}selected{% endif %}>Arts</option>
+			<option value="3" {% if tag == '3' %}selected{% endif %}>Educational</option>
+			<option value="4" {% if tag == '4' %}selected{% endif %}>Entertainment</option>
+			<option value="5" {% if tag == '5' %}selected{% endif %}>F&amp;B</option>
+			<option value="6" {% if tag == '6' %}selected{% endif %}>Fitness</option>
+			<option value="7" {% if tag == '7' %}selected{% endif %}>Group</option>
+			<option value="8" {% if tag == '8' %}selected{% endif %}>High Intensity</option>
+			<option value="9" {% if tag == '9' %}selected{% endif %}>Individual</option>
+			<option value="10" {% if tag == '10' %}selected{% endif %}>Low Intensity</option>
+			<option value="11" {% if tag == '11' %}selected{% endif %}>Music</option>
+			<option value="12" {% if tag == '12' %}selected{% endif %}>Outdoor</option>
+			<option value="13" {% if tag == '13' %}selected{% endif %}>Relaxation</option>
+			<option value="14" {% if tag == '14' %}selected{% endif %}>Seasonal</option>
+			<option value="15" {% if tag == '15' %}selected{% endif %}>Social</option>
+			<option value="16" {% if tag == '16' %}selected{% endif %}>Sports</option>
+			<option value="17" {% if tag == '17' %}selected{% endif %}>Travel</option>
+			<option value="18" {% if tag == '18' %}selected{% endif %}>Wellness</option>
+		</select>
     </form>
 	<hr>
 	<section>
-		<h1>Items List - Page {{ page }}</h1>
+		<h1>Items List - Page {{ page }} of {{ total_pages }}</h1>
 		<br>
-		<ul>
-		{% for activity, desc in activities %}
-		<li>
-			<a href="{{ url_for('activitypage', activity=activity) }}">{{ activity }}</a>
-			<p>{{ desc }}</p>
-			<br>
-		</li>
-		{% endfor %}
-		</ul>
+		{% if not_found %}
+			<p>Your search - '{{ search }}' did not match any activities, we are sorry for the inconvenience</p>
+			<p>:/</p>
+		{% else %}
+			<ul>
+			{% for activity, desc in activities %}
+				<li>
+					<a href="{{ url_for('activitypage', activity=activity) }}">{{ activity }}</a>
+					<p>{{ desc }}</p>
+					<br>
+				</li>
+			{% endfor %}
+			</ul>
 
 		<!-- page controls -->
-		<div>
-			{% if page > 1 -%}
-					<a href="{{ url_for('home', page=1) }}">1</a>&nbsp;...&nbsp;<a href="{{ url_for('home', page=page-1) }}">Previous</a>
-			{%- endif -%}
-			&nbsp;&nbsp;&nbsp;<strong>{{ page }}</strong>&nbsp;&nbsp;&nbsp;
-			{%- if page < total_pages -%}
-				<a href="{{ url_for('home', page=page+1) }}">Next</a>&nbsp;...&nbsp;<a href="{{ url_for('home', page=total_pages) }}">{{ total_pages }}</a>
-			{%- endif %}
-		</div>
+			<div>
+				{% if page > 1 -%}
+						<a href="{{ url_for('home', page=1) }}">1</a>&nbsp;...&nbsp;<a href="{{ url_for('home', page=page-1) }}">Previous</a>
+				{%- endif -%}
+				&nbsp;&nbsp;&nbsp;<strong>{{ page }}</strong>&nbsp;&nbsp;&nbsp;
+				{%- if page < total_pages -%}
+					<a href="{{ url_for('home', page=page+1) }}">Next</a>&nbsp;...&nbsp;<a href="{{ url_for('home', page=total_pages) }}">{{ total_pages }}</a>
+				{%- endif %}
+			</div>
+		{% endif %}
 	</section>
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>alert("{{ messages | safe }}");</script>
+        {% endfor %}
+    {% endif %}
+	{% endwith %}
+
   </body>
 </html>

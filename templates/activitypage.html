@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Activity Page</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='page.css') }}">
+  </head>
+  <body>
+    <h1>{{ activity.name }}</h1>
+    <p>{{ activity.description }}</p>
+    <img src="{{ url_for('static', filename='arrow_left.png') }}" alt="" id="arrow"><a href="{{ url_for('home') }}" id="return">Back to Home</a>
+	
+	{% with messages = get_flashed_messages() %}
+    {% if messages %}
+        {% for message in messages %}
+            <script>alert("{{ messages | safe}}");</script>
+        {% endfor %}
+    {% endif %}
+	{% endwith %}
+
+  </body>
+</html>
