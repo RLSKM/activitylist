@@ -1,1 +1,99 @@
+body {
+	font-family: sans-serif;
+    min-height: 100vh; /* Ensure body takes up full viewport height */
+    background: linear-gradient(to right, orange 10%, white 10%, white 90%, orange 90%);
+    background-size: 100% 100%;
+	margin-left: 10%;
+	margin-right: 10%;
+}
 
+a:link, a:visited {
+	color: blue;
+	text-decoration: None;
+}
+
+button[type="submit"] {
+	text-align: center;
+	margin-left: 4%;
+}
+
+#main-head {
+	margin: 0 auto;
+	background-color: orange;
+	border: 0px auto;
+	border-radius: 10px;
+	padding: 5px;
+	color: white;
+	text-decoration: bold;
+	width: 50%;
+	height: 40px;
+	text-align: center;
+}
+
+#logoff {
+	margin-left:3%;
+	padding:5px;
+	border-radius: 5px;
+}
+		
+#logoff:hover {
+	background-color:#000000;
+	color: white;
+	opacity: 0.7;
+}	
+
+.search-icon {
+	width: 20px;
+	height: 20px;
+	text-align: center;
+}
+#filter {
+	height: 25px;
+	text-align: left;
+	font-size: 18px;
+	border: 2px solid black;
+	width: 12%;
+}
+#search {
+	border: 2px solid black;
+	width: 70%;
+	height: 25px;
+	font-size: 18px;
+	text-align: left;
+}
+
+h1 {
+	text-align: center;
+}
+
+ul {
+	list-style: None;
+	
+}
+
+
+div {
+	text-align: center;
+}
+
+div a:visited, div a:link {
+    text-decoration: None;
+	width: 20px;             /* Width of the box */
+    height: 30px;            /* Height of the box */
+    background-color: lightblue; /* Background color */
+    border: 1px solid black;   /* Border: thickness, style, color */
+    padding:5px;            /* Space inside the box */
+    margin: 10px auto;        /* Space outside the box, center-aligns it */
+    text-align: center;       /* Centers the text inside the box */
+	color: black
+}
+
+div strong {
+	width: 20x;             /* Width of the box */
+    height: 30px;            /* Height of the box */
+    background-color: lightblue; /* Background color */
+    border: 1px solid black;   /* Border: thickness, style, color */
+    padding: 5px;            /* Space inside the box */
+    margin: 10px auto;        /* Space outside the box, center-aligns it */
+    text-align: center;       /* Centers the text inside the box */
+}
